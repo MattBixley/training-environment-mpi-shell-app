@@ -67,11 +67,11 @@ RUN python3 -m venv /opt/venv \
     && /opt/venv/bin/pip install nanofilt \
     # Create symlinks to the venv binaries
     && ln -s /opt/venv/bin/pycoQC /usr/local/bin/ \
-    && ln -s /opt/venv/bin/NanoFilt /usr/local/bin/
+    && ln -s /opt/venv/bin/NanoFilt /usr/local/bin/ \
     # porechop
-    && git clone https://github.com/rrwick/Porechop.git
+    && git clone https://github.com/rrwick/Porechop.git \
     && cd Porechop \
-    && /opt/venv/bin/python3 setup.py install \
+    && python3 setup.py install \
     && chmod a+x porechop \
     && ln -s porechop /usr/local/bin/
 
