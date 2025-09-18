@@ -68,6 +68,12 @@ RUN python3 -m venv /opt/venv \
     # Create symlinks to the venv binaries
     && ln -s /opt/venv/bin/pycoQC /usr/local/bin/ \
     && ln -s /opt/venv/bin/NanoFilt /usr/local/bin/
+    # porechop
+    && git clone https://github.com/rrwick/Porechop.git
+    && cd Porechop \
+    && /opt/venv/bin/python3 setup.py install \
+    && chmod a+x porechop \
+    && ln -s porechop /usr/local/bin/
 
 # Install FastQC
 RUN wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.zip && \
@@ -84,14 +90,14 @@ RUN wget http://opengene.org/fastp/fastp && \
 #    ln -s /opt/fastp /usr/local/bin/fastp
 
 # Clone and build Porechop
-RUN git clone https://github.com/rrwick/Porechop.git && \
-    cd Porechop && \
-    python3 setup.py install && \
+# RUN git clone https://github.com/rrwick/Porechop.git && \
+#    cd Porechop && \
+#    python3 setup.py install && \
 #    porechop -h
 #    make && \
-    chmod a+x porechop && \
-    mv porechop /opt/ && \
-    ln -s /opt/porechop  /usr/local/bin/porechop
+#    chmod a+x porechop && \
+#    mv porechop /opt/ && \
+#    ln -s /opt/porechop  /usr/local/bin/porechop
 
 # Set up environment variables for the virtual environment
 ENV PATH="/opt/venv/bin:$PATH"
