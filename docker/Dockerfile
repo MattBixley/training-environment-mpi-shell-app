@@ -71,7 +71,7 @@ RUN python3 -m venv /opt/venv \
     # porechop
     && git clone https://github.com/rrwick/Porechop.git \
     && cd Porechop \
-    && python3 setup.py install \
+    && /opt/venv/bin/python3 setup.py install \
     && chmod a+x porechop \
     && ln -s porechop /usr/local/bin/
 
