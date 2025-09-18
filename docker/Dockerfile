@@ -4,7 +4,6 @@ FROM ubuntu:22.04
 RUN yes | unminimize
 
 # install system dependencies
-# TODO: move ldap-utils, libnss-ldapd, libpam-ldapd, nscd, nslcd to base image??
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         bioawk \
         curl \
@@ -85,7 +84,7 @@ RUN wget http://opengene.org/fastp/fastp && \
 #    ln -s /opt/fastp /usr/local/bin/fastp
 
 # Clone and build Porechop
-#RUN git clone https://github.com/rrwick/Porechop.git && \
+RUN git clone https://github.com/rrwick/Porechop.git && \
     cd Porechop && \
     python3 setup.py install && \
 #    porechop -h
